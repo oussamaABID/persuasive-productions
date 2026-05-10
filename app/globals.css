@@ -166,9 +166,43 @@
     @apply text-accent;
   }
 
-  .navbar-mobile-toggle {
-    @apply p-2 text-accent hover:text-white transition-colors;
+  /* Mobile Drawer */
+  .navbar-mobile-drawer {
+    @apply fixed top-0 right-0 h-full z-[1100] flex flex-col p-10 pt-24 bg-black/95 backdrop-blur-2xl border-l border-white/5 overflow-hidden;
+    width: min(80vw, 360px);
+  }
+
+  .navbar-mobile-link {
+    @apply relative flex items-center gap-5 py-5 pl-4 border-b border-white/5 transition-all;
     transition-duration: var(--duration-premium);
+  }
+
+  .navbar-mobile-link:hover {
+    @apply pl-6;
+  }
+
+  .navbar-mobile-link-active {
+    @apply pl-6;
+  }
+
+  .navbar-mobile-link-index {
+    @apply text-xxs font-mono text-accent/40 shrink-0 transition-colors;
+    transition-duration: var(--duration-premium);
+  }
+
+  .navbar-mobile-link:hover .navbar-mobile-link-index,
+  .navbar-mobile-link-active .navbar-mobile-link-index {
+    @apply text-accent;
+  }
+
+  .navbar-mobile-link-label {
+    @apply text-xl font-serif font-bold italic text-foreground/70 transition-colors;
+    transition-duration: var(--duration-premium);
+  }
+
+  .navbar-mobile-link:hover .navbar-mobile-link-label,
+  .navbar-mobile-link-active .navbar-mobile-link-label {
+    @apply text-white;
   }
 
   /* Section Heading Primitives */
