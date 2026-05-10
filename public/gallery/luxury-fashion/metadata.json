@@ -1,0 +1,33 @@
+{
+  "title": "Luxury Fashion",
+  "description": "High-end fashion photography blending modern silhouettes with vintage Asian elegance.",
+  "showOnHome": true,
+  "coverImage": "1.png",
+  "images": [
+    {
+      "file": "1.png",
+      "title": "Silk Opulence",
+      "alt": "Silk Opulence - Luxury Fashion"
+    },
+    {
+      "file": "2.png",
+      "title": "Architectural Zen",
+      "alt": "Architectural Zen - Luxury Fashion"
+    },
+    {
+      "file": "3.png",
+      "title": "Avant-Garde Heritage",
+      "alt": "Avant-Garde Heritage - Luxury Fashion"
+    },
+    {
+      "file": "4.png",
+      "title": "Golden Embroidery",
+      "alt": "Golden Embroidery - Luxury Fashion"
+    },
+    {
+      "file": "5.png",
+      "title": "Veiled Elegance",
+      "alt": "Veiled Elegance - Luxury Fashion"
+    }
+  ]
+}

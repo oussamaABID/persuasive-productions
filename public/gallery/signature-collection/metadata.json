@@ -1,0 +1,28 @@
+{
+  "title": "Signature Collection",
+  "description": "The ultimate expression of the Persuasive Productions aesthetic.",
+  "showOnHome": true,
+  "coverImage": "1.png",
+  "images": [
+    {
+      "file": "1.png",
+      "title": "Iconic Essence",
+      "alt": "Iconic Essence - Signature Collection"
+    },
+    {
+      "file": "2.png",
+      "title": "The Jasmine Bloom",
+      "alt": "The Jasmine Bloom - Signature Collection"
+    },
+    {
+      "file": "3.png",
+      "title": "Artistic Lens",
+      "alt": "Artistic Lens - Signature Collection"
+    },
+    {
+      "file": "4.png",
+      "title": "Jasmine Optics",
+      "alt": "Jasmine Optics - Signature Collection"
+    }
+  ]
+}

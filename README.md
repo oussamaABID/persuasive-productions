@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Persuasive Productions — Titanium Noir
 
-## Getting Started
+Persuasive Productions is a premium, high-fidelity photography platform. Built with a **Titanium Noir** aesthetic, it harmonizes cinematic noir textures with Asian-inspired motifs and high-contrast gold accents to deliver a museum-grade digital experience.
 
-First, run the development server:
+## 🏛️ Architectural Mandate (Vance Protocol)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This project adheres to a strict architectural hierarchy and technical purity standard known as the **Vance Mandate**.
+
+### 1. The Layered Hierarchy
+
+Crossing layer boundaries is prohibited. Every file resides in its designated domain:
+
+- **`/app` (Routing Layer)**: Orchestrates data fetching and SEO. No UI logic or complex styling is permitted here.
+- **`/features` (Domain Layer)**: Encapsulated business logic (e.g., `portfolio`, `booking`). Contains feature-specific hooks, types, and components.
+- **`/components` (Shared UI Layer)**:
+  - **Atoms**: Primitive, pure UI elements (Buttons, Badges).
+  - **Molecules**: Combinations of atoms with minimal logic.
+  - **Organisms**: High-level structural blocks (Navigation, Hero, Footer).
+
+### 2. Technical Stack
+
+- **Framework**: Next.js 16 (App Router & Turbopack)
+- **Styling**: Tailwind CSS v4 (CSS-First Architecture)
+- **Runtime**: Node.js 20+
+- **Motion**: Framer Motion (Kinetic Reveal logic)
+- **Icons**: Lucide React
+
+## ❃ Design System (OKLCH)
+
+The platform utilizes the **OKLCH color space** to ensure perceptual uniformity and premium vibrancy across all displays.
+
+- **Background**: `oklch(0.1 0 0)` (Deep Obsidian)
+- **Accent**: `oklch(0.85 0.12 85)` (Persuasive Gold)
+- **Foreground**: `oklch(0.98 0 0)` (Pure Ivory)
+
+### CSS-First Philosophy
+
+Following the **Vance Mandate**, arbitrary utility classes are minimized. All recurring UI patterns are centralized in `app/globals.css` using semantic naming:
+
+- `.nav-button`: Gold gradient interactive buttons with cinematic shine.
+- `.site-container`: Global width constraints and layout rhythm.
+- `.display-title`: Premium typographic hierarchy using **Playfair Display**.
+
+## ☾ Kinetic Purity & Motion
+
+Motion is not decorative; it is structural.
+
+- **MotionReveal**: Standardized entrance animations with `animate` props to eliminate layout shifts (CLS).
+- **HeroParallax**: Subtle depth-based motion on primary entry points.
+- **Noise Texture**: A global fixed grain overlay (`z-noise`) provides a filmic texture to the entire viewport.
+
+## 📂 Project Structure
+
+```text
+├── app/                  # Routing & Layouts
+├── components/           # Shared UI Components
+│   ├── atoms/            # Pure UI Primitives
+│   ├── molecules/        # Interactive Elements
+│   └── organisms/        # Complex Page Blocks
+├── features/             # Domain Logic (Home, Portfolio, Book)
+│   ├── api/              # Domain-specific fetchers
+│   ├── components/       # Domain-specific components
+│   └── hooks/            # Domain-specific logic
+├── lib/                  # Core Utilities & Gallery Logic
+├── public/               # Static Assets & Dynamic Gallery
+└── content/              # Externalized Site Copy (JSON)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Development & Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Node.js**: v20.x or higher
+- **Package Manager**: npm or pnpm
 
-## Learn More
+### Setup
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Install dependencies
+npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Start development server (Turbopack)
+npm run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Execute production build
+npm run build
+```
 
-## Deploy on Vercel
+## ❃ The Jasmine Motif
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The jasmine flower (❀) serves as the brand's spiritual anchor, symbolizing purity and grace. It is integrated into the grid rhythm and typography across the platform.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+*Engineered with precision for Persuasive Productions.*
