@@ -4,35 +4,14 @@
   "showOnHome": true,
   "coverImage": "1.png",
   "images": [
-    {
-      "file": "1.png",
-      "title": "Iconic Essence",
-      "alt": "Iconic Essence - Signature Collection"
-    },
-    {
-      "file": "2.png",
-      "title": "The Jasmine Bloom",
-      "alt": "The Jasmine Bloom - Signature Collection"
-    },
-    {
-      "file": "3.png",
-      "title": "Artistic Lens",
-      "alt": "Artistic Lens - Signature Collection"
-    },
-    {
-      "file": "4.png",
-      "title": "Jasmine Optics",
-      "alt": "Jasmine Optics - Signature Collection"
-    },
-    {
-      "file": "5.png",
-      "title": "Masterpiece Lens",
-      "alt": "Masterpiece Lens - Signature Collection"
-    },
-    {
-      "file": "6.png",
-      "title": "Golden Arch Silhouette",
-      "alt": "Golden Arch Silhouette - Signature Collection"
-    }
+    { "file": "1.png", "title": "Iconic Essence", "alt": "Iconic Essence - Signature Collection" },
+    { "file": "2.png", "title": "The Jasmine Bloom", "alt": "The Jasmine Bloom - Signature Collection" },
+    { "file": "3.png", "title": "Artistic Lens", "alt": "Artistic Lens - Signature Collection" },
+    { "file": "4.png", "title": "Jasmine Optics", "alt": "Jasmine Optics - Signature Collection" },
+    { "file": "5.png", "title": "Masterpiece Lens", "alt": "Masterpiece Lens - Signature Collection" },
+    { "file": "6.png", "title": "Golden Arch Silhouette", "alt": "Golden Arch Silhouette - Signature Collection" },
+    { "file": "7.png", "title": "Mirror of Stillness", "alt": "Mirror of Stillness - Signature Collection" },
+    { "file": "8.png", "title": "Petal & Lash", "alt": "Petal & Lash - Signature Collection" },
+    { "file": "9.png", "title": "Jasmine Mandala", "alt": "Jasmine Mandala - Signature Collection" }
   ]
 }

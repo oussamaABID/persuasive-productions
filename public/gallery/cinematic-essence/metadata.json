@@ -4,50 +4,17 @@
   "showOnHome": true,
   "coverImage": "1.png",
   "images": [
-    {
-      "file": "1.png",
-      "title": "Jasmine Mist",
-      "alt": "Jasmine Mist - Cinematic Essence"
-    },
-    {
-      "file": "2.png",
-      "title": "Neon Traditions",
-      "alt": "Neon Traditions - Cinematic Essence"
-    },
-    {
-      "file": "3.png",
-      "title": "Vintage Dawn",
-      "alt": "Vintage Dawn - Cinematic Essence"
-    },
-    {
-      "file": "4.png",
-      "title": "Misty Street Scene",
-      "alt": "Misty Street Scene - Cinematic Essence"
-    },
-    {
-      "file": "5.png",
-      "title": "Neon Reflections",
-      "alt": "Neon Reflections - Cinematic Essence"
-    },
-    {
-      "file": "6.png",
-      "title": "Moody Atmosphere",
-      "alt": "Moody Atmosphere - Cinematic Essence"
-    },
-    {
-      "file": "7.png",
-      "title": "Asian-inspired Setting",
-      "alt": "Asian-inspired Setting - Cinematic Essence"
-    },
-    {
-      "file": "8.png",
-      "title": "Narrative Photography",
-      "alt": "Narrative Photography - Cinematic Essence"
-    },
-    {
-      "file": "9.png",
-      "title": "Midnight Reflections",
-      "alt": "Midnight Reflections - Cinematic Essence"
-    }
+    { "file": "1.png", "title": "Jasmine Mist", "alt": "Jasmine Mist - Cinematic Essence" },
+    { "file": "2.png", "title": "Neon Traditions", "alt": "Neon Traditions - Cinematic Essence" },
+    { "file": "3.png", "title": "Vintage Dawn", "alt": "Vintage Dawn - Cinematic Essence" },
+    { "file": "4.png", "title": "Misty Street Scene", "alt": "Misty Street Scene - Cinematic Essence" },
+    { "file": "5.png", "title": "Neon Reflections", "alt": "Neon Reflections - Cinematic Essence" },
+    { "file": "6.png", "title": "Moody Atmosphere", "alt": "Moody Atmosphere - Cinematic Essence" },
+    { "file": "7.png", "title": "Asian-inspired Setting", "alt": "Asian-inspired Setting - Cinematic Essence" },
+    { "file": "8.png", "title": "Narrative Photography", "alt": "Narrative Photography - Cinematic Essence" },
+    { "file": "9.png", "title": "Midnight Reflections", "alt": "Midnight Reflections - Cinematic Essence" },
+    { "file": "10.png", "title": "Lantern Alley", "alt": "Lantern Alley - Cinematic Essence" },
+    { "file": "11.png", "title": "Ink & Candlelight", "alt": "Ink & Candlelight - Cinematic Essence" },
+    { "file": "12.png", "title": "City Observer", "alt": "City Observer - Cinematic Essence" }
   ]
 }
