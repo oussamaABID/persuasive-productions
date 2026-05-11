@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
-import { MessageSquare, X, Sparkles } from 'lucide-react';
+import { MessageSquare, X, Sparkles, RotateCcw } from 'lucide-react';
 import { SiteContent } from '@/lib/types';
 
 // ─── Phase 1: Dynamic import — zero payload on initial page load ───────────────
@@ -79,6 +79,15 @@ export default function ChatbotPlaceholder({ content }: ChatbotPlaceholderProps)
   const [isOpen, setIsOpen] = useState(false);
   // Track whether the interface has ever been opened to preserve state after close
   const [hasOpened, setHasOpened] = useState(false);
+  // Key to force remount of ChatbotInterface when clearing history
+  const [chatKey, setChatKey] = useState(0);
+
+  const clearHistory = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('studio_concierge_history');
+      setChatKey((prev) => prev + 1);
+    }
+  }, []);
 
   const toggle = useCallback(() => {
     setIsOpen((prev) => {
@@ -120,17 +129,28 @@ export default function ChatbotPlaceholder({ content }: ChatbotPlaceholderProps)
                   Online · Persuasive Productions
                 </p>
               </div>
-              <button
-                onClick={toggle}
-                className="text-muted-foreground/40 hover:text-foreground transition-colors p-1 -mr-1"
-                aria-label="Close chat"
-              >
-                <X size={16} />
-              </button>
+              <div className="flex items-center gap-1 -mr-1">
+                <button
+                  onClick={clearHistory}
+                  className="flex items-center gap-1.5 px-2 py-1 rounded-sm bg-accent/10 text-accent hover:bg-accent/20 transition-all border border-accent/20"
+                  aria-label="Reset conversation"
+                  title="Reset conversation"
+                >
+                  <RotateCcw size={12} />
+                  <span className="text-[10px] font-bold uppercase tracking-tight">Reset</span>
+                </button>
+                <button
+                  onClick={toggle}
+                  className="text-muted-foreground/40 hover:text-foreground transition-colors p-1"
+                  aria-label="Close chat"
+                >
+                  <X size={16} />
+                </button>
+              </div>
             </header>
 
             {/* Interface — lazy-loaded, preserved in DOM once mounted */}
-            {hasOpened && <ChatbotInterface content={content} onClose={() => setIsOpen(false)} />}
+            {hasOpened && <ChatbotInterface key={chatKey} content={content} onClose={() => setIsOpen(false)} />}
           </motion.div>
         )}
       </AnimatePresence>
