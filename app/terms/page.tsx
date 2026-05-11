@@ -1,6 +1,6 @@
 import Navbar from "@/components/organisms/Navbar";
 import Footer from "@/components/organisms/Footer";
-import ChatbotPlaceholder from "@/components/organisms/ChatbotPlaceholder";
+
 import content from "@/content/site-content.json";
 
 export default function Terms() {
@@ -41,7 +41,7 @@ export default function Terms() {
         </div>
       </div>
       <Footer content={content} />
-      <ChatbotPlaceholder content={content} />
+
     </main>
   );
 }

@@ -9,7 +9,7 @@
   --color-muted: oklch(0.2 0 0);
   --color-muted-foreground: oklch(0.7 0 0);
   
-  --background-image-gold-gradient: linear-gradient(135deg, oklch(0.85 0.12 85) 0%, #F5E3B3 50%, oklch(0.85 0.12 85) 100%);
+  --background-image-gold-gradient: linear-gradient(135deg, oklch(0.85 0.12 85) 0%, oklch(0.92 0.06 90) 50%, oklch(0.85 0.12 85) 100%);
   --background-image-gold-text: linear-gradient(to bottom right, oklch(0.85 0.12 85), oklch(0.7 0.1 85));
   
   --font-serif: var(--font-playfair);
@@ -47,7 +47,7 @@
   --opacity-ghost-plus: 0.04;
 
   /* Shadows */
-  --shadow-gold-heavy: 0 20px 40px -10px rgba(239, 200, 103, 0.3);
+  --shadow-gold-heavy: 0 20px 40px -10px oklch(0.85 0.12 85 / 0.3);
 
   /* Aspect Ratios */
   --aspect-cinematic: 21 / 9;
@@ -583,5 +583,111 @@
 
   .bespoke-badge {
     @apply text-xxs font-bold uppercase tracking-widest-plus text-accent;
+  }
+
+  /* ─── AI Brand Concierge Chatbot ─────────────────────────────────────────── */
+
+  .chatbot-trigger {
+    @apply w-16 h-16 rounded-full bg-gold-gradient shadow-gold-heavy flex items-center justify-center text-black relative z-10 outline-none;
+    /* Pulse ring for idle state */
+    transition: box-shadow var(--duration-premium) var(--ease-premium);
+  }
+
+  .chatbot-trigger:hover {
+    @apply brightness-110 shadow-2xl;
+    box-shadow: 0 0 0 6px oklch(0.85 0.12 85 / 0.15), var(--shadow-gold-heavy);
+  }
+
+  .chatbot-shell {
+    @apply absolute bottom-24 right-0 flex flex-col overflow-hidden rounded-sm border border-white/5;
+    width: min(22rem, calc(100vw - 2rem));
+    max-height: 85dvh;
+    background: oklch(0.1 0 0 / 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+      0 32px 64px oklch(0 0 0 / 0.6),
+      0 0 0 1px oklch(1 0 0 / 0.05),
+      inset 0 1px 0 oklch(1 0 0 / 0.08);
+  }
+
+  .chatbot-header {
+    @apply flex items-center gap-3 px-5 py-4 border-b border-white/5 shrink-0;
+    background: oklch(0.13 0 0 / 0.9);
+  }
+
+  .chatbot-header-dot {
+    @apply w-2 h-2 rounded-full bg-accent;
+    box-shadow: 0 0 8px oklch(0.85 0.12 85 / 0.6);
+  }
+
+  .chatbot-messages {
+    @apply flex-1 overflow-y-auto flex flex-col gap-3 px-4 py-5;
+    scroll-behavior: smooth;
+  }
+
+  .chatbot-messages::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .chatbot-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chatbot-messages::-webkit-scrollbar-thumb {
+    @apply bg-accent/20 rounded-full;
+  }
+
+  .chatbot-user-bubble {
+    @apply self-end max-w-[80%] rounded-sm px-4 py-2.5 text-sm font-medium text-black;
+    background: var(--background-image-gold-gradient);
+  }
+
+  .chatbot-bot-bubble {
+    @apply self-start max-w-[85%] rounded-sm px-4 py-2.5 text-sm font-light text-foreground leading-relaxed;
+    background: oklch(0.2 0 0 / 0.6);
+    border: 1px solid oklch(1 0 0 / 0.06);
+  }
+
+  .chatbot-widget-area {
+    @apply self-start w-full;
+  }
+
+  .chatbot-input-shell {
+    @apply flex items-center gap-2 px-4 py-3 shrink-0;
+    border-top: 1px solid oklch(1 0 0 / 0.07);
+    background: oklch(0.1 0 0 / 0.6);
+    /* Push above mobile keyboard */
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .chatbot-input {
+    @apply flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground/40 outline-none font-light;
+  }
+
+  .chatbot-send-btn {
+    @apply w-8 h-8 rounded-full flex items-center justify-center text-black shrink-0 transition-all;
+    background: var(--background-image-gold-gradient);
+    transition-duration: var(--duration-premium);
+  }
+
+  .chatbot-send-btn:hover {
+    @apply scale-110 brightness-110;
+  }
+
+  .chatbot-send-btn:disabled {
+    @apply opacity-40 scale-100 cursor-not-allowed;
+  }
+
+  /* Portfolio chips */
+  .chatbot-chip {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border border-accent/20 text-accent text-xxs font-bold uppercase tracking-widest-plus transition-all cursor-pointer;
+    background: oklch(0.85 0.12 85 / 0.06);
+    transition-duration: var(--duration-premium);
+  }
+
+  .chatbot-chip:hover {
+    @apply border-accent/50 brightness-110;
+    background: oklch(0.85 0.12 85 / 0.12);
   }
 }
