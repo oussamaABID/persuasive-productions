@@ -49,7 +49,7 @@ export const Button = ({
       )}
       {...props}
     >
-      <span className="relative z-10 flex items-center justify-center gap-2">
+      <span className={cn("relative z-10 flex items-center justify-center gap-2", variant === "primary" && "text-black")}>
         {children}
       </span>
       {variant === "primary" && (

@@ -83,7 +83,7 @@ export default function PackagesView() {
                   >
                     <Button 
                       variant={isHighlighted ? "primary" : "outline"}
-                      className="w-full text-xxs uppercase tracking-widest h-14"
+                      className="w-full h-14"
                     >
                       {content.common.buttons.choose} {pkg.name.split(' ')[0]}
                     </Button>
