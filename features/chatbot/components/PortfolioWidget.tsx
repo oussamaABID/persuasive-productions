@@ -15,13 +15,14 @@ const PORTFOLIO_CHIPS = [
  * Renders chip-style navigation shortcuts to portfolio collections.
  * Uses chatbot-chip design token — no ad-hoc utilities.
  */
-export default function PortfolioWidget() {
+export default function PortfolioWidget({ onClose }: { onClose?: () => void }) {
   return (
     <div className="chatbot-widget-area mt-2 mb-1 flex flex-wrap gap-2">
       {PORTFOLIO_CHIPS.map((chip) => (
         <Link
           key={chip.href}
           href={chip.href}
+          onClick={onClose}
           className="chatbot-chip"
           aria-label={`View ${chip.label} collection`}
         >

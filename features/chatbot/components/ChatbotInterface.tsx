@@ -102,7 +102,7 @@ function MessageBubble({ msg, index }: { msg: ChatMsg; index: number }) {
 
 // ─── Widget Renderer ──────────────────────────────────────────────────────────
 
-function WidgetArea({ widget }: { widget: WidgetType }) {
+function WidgetArea({ widget, onClose }: { widget: WidgetType; onClose?: () => void }) {
   if (!widget) return null;
   return (
     <motion.div
@@ -111,8 +111,8 @@ function WidgetArea({ widget }: { widget: WidgetType }) {
       animate="visible"
       transition={{ delay: 0.1, duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
     >
-      {widget === 'bookingWidget' && <BookingWidget />}
-      {widget === 'portfolioWidget' && <PortfolioWidget />}
+      {widget === 'bookingWidget' && <BookingWidget onClose={onClose} />}
+      {widget === 'portfolioWidget' && <PortfolioWidget onClose={onClose} />}
     </motion.div>
   );
 }
@@ -145,10 +145,14 @@ function TypingIndicator() {
 
 interface ChatbotInterfaceProps {
   content: SiteContent;
+  onClose?: () => void;
 }
 
-export default function ChatbotInterface({ content }: ChatbotInterfaceProps) {
-  const respond = useCallback(buildResponder(content), [content]);
+export default function ChatbotInterface({ content, onClose }: ChatbotInterfaceProps) {
+  const respond = useCallback(
+    (input: string) => buildResponder(content)(input),
+    [content]
+  );
 
   const [messages, setMessages] = useState<ChatMsg[]>(() => {
     // Hydrate from sessionStorage on mount (survives hard reloads within the tab)
@@ -248,7 +252,7 @@ export default function ChatbotInterface({ content }: ChatbotInterfaceProps) {
         {messages.map((msg, i) => (
           <div key={msg.id}>
             <MessageBubble msg={msg} index={i} />
-            <WidgetArea widget={msg.widget} />
+            <WidgetArea widget={msg.widget} onClose={onClose} />
           </div>
         ))}
         <AnimatePresence>{isTyping && <TypingIndicator />}</AnimatePresence>

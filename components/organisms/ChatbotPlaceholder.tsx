@@ -130,7 +130,7 @@ export default function ChatbotPlaceholder({ content }: ChatbotPlaceholderProps)
             </header>
 
             {/* Interface — lazy-loaded, preserved in DOM once mounted */}
-            {hasOpened && <ChatbotInterface content={content} />}
+            {hasOpened && <ChatbotInterface content={content} onClose={() => setIsOpen(false)} />}
           </motion.div>
         )}
       </AnimatePresence>

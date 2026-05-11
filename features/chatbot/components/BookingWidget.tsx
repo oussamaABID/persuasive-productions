@@ -8,13 +8,18 @@ import { CalendarDays, ArrowRight } from 'lucide-react';
  * Renders a branded CTA that navigates to /book.
  * Uses nav-button design token — no ad-hoc utilities.
  */
-export default function BookingWidget() {
+export default function BookingWidget({ onClose }: { onClose?: () => void }) {
   const router = useRouter();
+
+  const handleNavigation = () => {
+    router.push('/packages');
+    onClose?.();
+  };
 
   return (
     <div className="chatbot-widget-area mt-2 mb-1">
       <button
-        onClick={() => router.push('/packages')}
+        onClick={handleNavigation}
         className="nav-button w-full gap-3 text-left"
         aria-label="Navigate to our services page"
       >
