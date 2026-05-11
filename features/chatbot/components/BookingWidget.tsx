@@ -5,8 +5,8 @@ import { CalendarDays, ArrowRight } from 'lucide-react';
 
 /**
  * BookingWidget — Atom.
- * Renders a branded CTA that navigates to /book.
- * Uses nav-button design token — no ad-hoc utilities.
+ * Renders a branded CTA that navigates to /packages.
+ * Uses nav-button design token — compact via .chatbot-shell scoped styles.
  */
 export default function BookingWidget({ onClose }: { onClose?: () => void }) {
   const router = useRouter();
@@ -17,15 +17,17 @@ export default function BookingWidget({ onClose }: { onClose?: () => void }) {
   };
 
   return (
-    <div className="chatbot-widget-area mt-2 mb-1">
+    <div className="chatbot-widget-area mt-1 mb-1">
       <button
         onClick={handleNavigation}
-        className="nav-button w-full gap-3 text-left"
+        className="nav-button w-full group"
         aria-label="Navigate to our services page"
       >
         <CalendarDays size={14} className="shrink-0" />
-        <span>View Our Services</span>
-        <ArrowRight size={12} className="ml-auto shrink-0" />
+        <span className="flex-1 text-left font-bold uppercase tracking-widest text-[10px]">
+          View Our Services
+        </span>
+        <ArrowRight size={12} className="shrink-0 group-hover:translate-x-1 transition-transform" />
       </button>
     </div>
   );

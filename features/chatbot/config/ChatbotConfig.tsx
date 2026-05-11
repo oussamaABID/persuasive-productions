@@ -1,7 +1,12 @@
 import { createChatBotMessage } from 'react-chatbot-kit';
-import BookingWidget from '@/features/chatbot/components/BookingWidget';
+import ServiceLinkWidget from '@/features/chatbot/components/ServiceLinkWidget';
 import PortfolioWidget from '@/features/chatbot/components/PortfolioWidget';
+import QuickReplyWidget from '@/features/chatbot/components/QuickReplyWidget';
 
+/**
+ * ChatbotConfig — Exquisite Concierge Configuration.
+ * Defines the initial state, widgets, and styles for the Studio Concierge.
+ */
 const ChatbotConfig = {
   initialMessages: [
     createChatBotMessage(
@@ -9,8 +14,11 @@ const ChatbotConfig = {
       {}
     ),
     createChatBotMessage(
-      'I can assist you with our portfolio, packages, or booking a session with Erika. How may I serve you?',
-      { delay: 600 }
+      'Our studio specializes in the cinematic capturing of essence. I can assist you with our artistic portfolio, session packages, or Erika\'s creative vision. How may I illuminate your inquiry?',
+      { 
+        widget: 'quickReplies',
+        delay: 800 
+      }
     ),
   ],
   botName: 'Studio Concierge',
@@ -20,13 +28,18 @@ const ChatbotConfig = {
   },
   widgets: [
     {
-      widgetName: 'bookingWidget',
-      widgetFunc: (props: object) => <BookingWidget {...(props as object)} />,
+      widgetName: 'serviceLinkWidget',
+      widgetFunc: (props: object) => <ServiceLinkWidget {...(props as any)} />,
       mapStateToProps: [],
     },
     {
       widgetName: 'portfolioWidget',
       widgetFunc: (props: object) => <PortfolioWidget {...(props as object)} />,
+      mapStateToProps: [],
+    },
+    {
+      widgetName: 'quickReplies',
+      widgetFunc: (props: object) => <QuickReplyWidget {...(props as any)} />,
       mapStateToProps: [],
     },
   ],

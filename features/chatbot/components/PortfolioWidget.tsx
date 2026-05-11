@@ -8,12 +8,14 @@ const PORTFOLIO_CHIPS = [
   { label: 'Artistic Vision', href: '/portfolio#artistic-vision' },
   { label: 'Cinematic Essence', href: '/portfolio#cinematic-essence' },
   { label: 'Luxury Fashion', href: '/portfolio#luxury-fashion' },
+  { label: 'Signature Collection', href: '/portfolio#signature-collection' },
+  { label: 'Studio Elegance', href: '/portfolio#studio-elegance' },
+  { label: 'Timeless Noir', href: '/portfolio#timeless-noir' },
 ];
 
 /**
  * PortfolioWidget — Atom.
  * Renders chip-style navigation shortcuts to portfolio collections.
- * Uses chatbot-chip design token — no ad-hoc utilities.
  */
 export default function PortfolioWidget({ onClose }: { onClose?: () => void }) {
   return (
