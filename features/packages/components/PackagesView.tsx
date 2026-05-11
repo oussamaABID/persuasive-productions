@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Navbar from '@/components/organisms/Navbar';
 import Footer from '@/components/organisms/Footer';
-import ChatbotPlaceholder from '@/components/organisms/ChatbotPlaceholder';
+
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { MotionSection } from '@/components/ui/MotionSection';
@@ -145,7 +145,7 @@ export default function PackagesView() {
       </section>
 
       <Footer content={content} />
-      <ChatbotPlaceholder content={content} />
+
     </main>
   );
 }

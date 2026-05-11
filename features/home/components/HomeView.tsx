@@ -1,6 +1,6 @@
 import Navbar from '@/components/organisms/Navbar';
 import Footer from '@/components/organisms/Footer';
-import ChatbotPlaceholder from '@/components/organisms/ChatbotPlaceholder';
+
 import { HeroSection } from './HeroSection';
 import { StatsSection } from './StatsSection';
 import { AboutSection } from './AboutSection';
@@ -38,7 +38,7 @@ export default function HomeView({ content, collections }: HomeViewProps) {
       <QuoteSection content={content} />
 
       <Footer content={content} />
-      <ChatbotPlaceholder content={content} />
+
     </main>
   );
 }

@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Turnstile } from '@marsidev/react-turnstile';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
@@ -25,6 +25,20 @@ export function BookingForm({ content }: BookingFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const successRef = useRef<HTMLDivElement>(null);
+
+  // Scroll the confirmation into view as soon as it appears.
+  // requestAnimationFrame ensures the DOM has painted before we scroll.
+  useEffect(() => {
+    if (isSuccess && successRef.current) {
+      requestAnimationFrame(() => {
+        successRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
+    }
+  }, [isSuccess]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -212,6 +226,7 @@ export function BookingForm({ content }: BookingFormProps) {
         ) : (
           <motion.div 
             key="success"
+            ref={successRef}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}

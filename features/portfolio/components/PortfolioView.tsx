@@ -1,6 +1,6 @@
 import Navbar from '@/components/organisms/Navbar';
 import Footer from '@/components/organisms/Footer';
-import ChatbotPlaceholder from '@/components/organisms/ChatbotPlaceholder';
+
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { PortfolioGrid } from '@/features/portfolio/components/PortfolioGrid';
 import { GalleryCollection } from '@/lib/gallery';
@@ -37,7 +37,7 @@ export default function PortfolioView({ collections, content }: PortfolioViewPro
       </section>
 
       <Footer content={content} />
-      <ChatbotPlaceholder content={content} />
+
     </main>
   );
 }

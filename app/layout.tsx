@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Outfit } from "next/font/google";
 import "./globals.css";
+import ChatbotPlaceholder from "@/components/organisms/ChatbotPlaceholder";
+import content from "@/content/site-content.json";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -29,6 +31,11 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent selection:text-accent-foreground">
         {children}
+        {/* ── Global Chatbot Singleton ─────────────────────────────────────────
+            Mounted here, outside {children}, so it is NEVER unmounted during
+            client-side routing. Conversation state is preserved across all pages.
+        ─────────────────────────────────────────────────────────────────────── */}
+        <ChatbotPlaceholder content={content} />
       </body>
     </html>
   );

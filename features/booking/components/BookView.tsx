@@ -1,6 +1,6 @@
 import Navbar from '@/components/organisms/Navbar';
 import Footer from '@/components/organisms/Footer';
-import ChatbotPlaceholder from '@/components/organisms/ChatbotPlaceholder';
+
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import content from '@/content/site-content.json';
 import { Suspense } from 'react';
@@ -25,7 +25,7 @@ export default function BookView() {
       </section>
 
       <Footer content={content} />
-      <ChatbotPlaceholder content={content} />
+
     </main>
   );
 }
