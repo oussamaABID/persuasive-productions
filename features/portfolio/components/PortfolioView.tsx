@@ -24,7 +24,7 @@ export default function PortfolioView({ collections, content }: PortfolioViewPro
         />
 
         {collections.length === 0 ? (
-          <div className="py-40 text-center glass rounded-sm border-dashed border-accent/20 max-w-4xl mx-auto">
+          <div className="empty-state-shell">
             <span className="text-4xl mb-6 block">❀</span>
             <p className="text-muted-foreground italic text-lg">
               Our curated collection is currently being prepared.<br />

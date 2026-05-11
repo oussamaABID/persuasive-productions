@@ -48,7 +48,7 @@ export default function PackagesView() {
 
                 {/* Card header */}
                 <header className="mb-8 relative z-10">
-                  <p className="text-accent font-mono text-xxs tracking-widest mb-3">
+                  <p className="section-tag mb-3">
                     {(idx + 1).toString().padStart(2, '0')}
                   </p>
                   <h3 className="text-2xl font-serif font-bold italic text-white mb-6 leading-tight">
@@ -58,7 +58,7 @@ export default function PackagesView() {
                     <span className="text-5xl font-serif gold-text-gradient font-bold leading-none">
                       {pkg.price}
                     </span>
-                    <span className="text-muted-foreground text-xxs uppercase tracking-widest">
+                    <span className="section-tag opacity-60">
                       {content.packages.ui.perSession}
                     </span>
                   </div>
@@ -123,7 +123,7 @@ export default function PackagesView() {
               </p>
               <div className="flex flex-wrap gap-6 justify-center md:justify-start">
                 {content.packages.bespoke.features.map((feat: string, i: number) => (
-                  <span key={i} className="text-xxs uppercase tracking-widest text-accent/60 flex items-center gap-2">
+                  <span key={i} className="accent-label">
                     <span className="text-accent/40">❀</span> {feat}
                   </span>
                 ))}
@@ -134,7 +134,7 @@ export default function PackagesView() {
               <Link href="/book?package=Bespoke%20Vision">
                 <Button 
                   variant="primary" 
-                  className="px-16 py-6 text-xs uppercase tracking-widest font-bold whitespace-nowrap" 
+                  className="bespoke-cta-button" 
                 >
                   {content.common.buttons.inquire}
                 </Button>

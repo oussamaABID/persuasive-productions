@@ -103,9 +103,59 @@
     @apply text-accent uppercase tracking-widest-plus text-xxs font-bold;
   }
 
+  .accent-label {
+    @apply text-xxs uppercase tracking-widest text-accent/60 flex items-center gap-2;
+  }
+
+  /* Booking & Feedback */
+  .error-notice {
+    @apply p-4 bg-red-500/10 border border-red-500/20 text-red-400 text-xxs uppercase tracking-widest font-bold rounded-sm mb-8;
+  }
+
+  .booking-form-success-shell {
+    @apply relative py-20 px-8 text-center bg-muted/10 border border-accent/20 rounded-sm overflow-hidden backdrop-blur-md;
+  }
+
+  .booking-form-success-icon {
+    @apply w-24 h-24 rounded-full bg-accent/10 flex items-center justify-center text-accent mx-auto mb-10;
+  }
+
+  .booking-success-title {
+    @apply text-4xl md:text-5xl font-serif font-bold italic text-white mb-6;
+  }
+
+  .booking-success-button {
+    @apply w-full h-16 text-xxs uppercase tracking-widest flex items-center justify-center gap-2;
+  }
+
+  /* Package Views */
+  .bespoke-cta-button {
+    @apply px-16 py-6 text-xs uppercase tracking-widest font-bold whitespace-nowrap;
+  }
+
+  .empty-state-shell {
+    @apply py-40 text-center rounded-sm border-dashed border-accent/20 max-w-4xl mx-auto;
+    @apply bg-background/30 backdrop-blur-xl border-accent/10;
+  }
+
+  /* Policy & Content Pages */
+  .page-main {
+    @apply relative min-h-screen pt-40 pb-20 bg-background text-foreground font-light;
+  }
+
+  .page-title {
+    @apply text-4xl md:text-6xl font-serif font-bold italic mb-12 bg-gold-text bg-clip-text text-transparent;
+  }
+
+  .page-subtitle {
+    @apply text-xl font-bold text-accent uppercase tracking-widest mb-4;
+  }
+
   /* Navigation Atoms */
   .navbar-shell {
-    @apply fixed top-0 inset-x-0 z-navbar transition-all ease-premium flex flex-col justify-center;
+    @apply fixed top-0 inset-x-0 transition-all flex flex-col justify-center;
+    z-index: var(--z-index-navbar);
+    transition-timing-function: var(--ease-premium);
     transition-duration: var(--duration-premium);
   }
 
@@ -477,21 +527,9 @@
     @apply text-tiny text-muted-foreground/40 text-center uppercase tracking-widest-plus mt-12 italic leading-relaxed;
   }
 
-  .booking-form-success-shell {
-    @apply bg-muted/10 border border-white/5 p-12 md:p-24 rounded-sm text-center relative overflow-hidden;
-  }
 
-  .booking-form-success-icon {
-    @apply w-24 h-24 rounded-full bg-accent/10 flex items-center justify-center text-accent mx-auto mb-10;
-  }
 
-  .booking-success-title {
-    @apply text-5xl font-serif font-bold italic text-white mb-6;
-  }
 
-  .booking-success-button {
-    @apply w-full h-14 flex items-center justify-center gap-3;
-  }
 
   /* Footer Components */
   .footer-shell {
