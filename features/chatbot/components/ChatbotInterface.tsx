@@ -1,79 +1,122 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send } from 'lucide-react';
+import { Send, Sparkles } from 'lucide-react';
 import { SiteContent } from '@/lib/types';
-import BookingWidget from '@/features/chatbot/components/BookingWidget';
+import ServiceLinkWidget from '@/features/chatbot/components/ServiceLinkWidget';
 import PortfolioWidget from '@/features/chatbot/components/PortfolioWidget';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type MessageType = 'bot' | 'user';
-type WidgetType = 'bookingWidget' | 'portfolioWidget' | null;
+type WidgetType = 'serviceLinkWidget' | 'portfolioWidget' | 'quickReplies' | null;
 
 interface ChatMsg {
   id: number;
   type: MessageType;
   text: string;
   widget: WidgetType;
+  props?: any;
 }
 
-// ─── Intent Engine (Client-side, reads SiteContent) ───────────────────────────
+// ─── Intent Engine (Enhanced Logic) ──────────────────────────────────────────
 
 function buildResponder(content: SiteContent) {
-  const { packages, home, portfolio } = content;
-  const packageList = packages.items.map((p) => `• ${p.name} — ${p.price}`).join('\n');
+  const { packages, portfolio, home } = content;
+  const packageList = packages.items.map((p) => `• **${p.name}** — ${p.price}`).join('\n');
 
-  return function respond(input: string): { text: string; widget: WidgetType; followUp?: string } {
+  return function respond(input: string): { text: string; widget: WidgetType; props?: any; followUp?: string } {
     const q = input.toLowerCase().trim();
 
-    if (/hello|hi|hey|greet|good\s*(morning|afternoon|evening)/i.test(q)) {
+    // Greeting
+    if (/\b(hi|hello|hey|greetings|bonjour|welcome)\b/i.test(q)) {
       return {
-        text: `Greetings. ${content.common.brand.name} is dedicated to capturing your most authentic essence. What aspect of our studio can I illuminate for you?`,
-        widget: null,
+        text: `Greetings. Welcome to ${content.common.brand.name}, where we specialize in capturing the essence of pure art.`,
+        widget: 'quickReplies',
+        props: {
+          replies: [
+            { label: 'View Portfolio', id: 'portfolio' },
+            { label: 'See Pricing', id: 'pricing' },
+            { label: 'Our Philosophy', id: 'about' }
+          ]
+        }
       };
     }
 
-    if (/book|session|schedule|reserve|appointment|call|meet/i.test(q)) {
+    // Portfolio
+    if (/\b(portfolio|work|gallery|collection|photos|images|shots|see)\b/i.test(q) || q === 'portfolio') {
       return {
-        text: 'I would be delighted to arrange your session. Erika personally reviews every inquiry to ensure a perfect creative alignment. Please proceed to our reservation form:',
-        widget: 'bookingWidget',
-      };
-    }
-
-    if (/portfolio|work|gallery|collection|photo|image|shot|look/i.test(q)) {
-      return {
-        text: `${portfolio.description} Each collection reflects a distinct artistic vision. Explore our curated series:`,
+        text: `${portfolio.description} Every frame is meticulously composed to tell a high-impact story.`,
         widget: 'portfolioWidget',
+        followUp: "Shall we discuss our investment tiers or Erika's artistic approach next?"
       };
     }
 
-    if (/package|price|pricing|cost|rate|fee|service|offer|how much|\$/i.test(q)) {
+    // Pricing/Packages
+    if (/\b(package|price|pricing|cost|rate|fee|service|offer|how much|\$|investment)\b/i.test(q) || q === 'pricing') {
       return {
-        text: `${packages.description}\n\n${packageList}\n\nFor bespoke brand campaigns or large productions, we offer fully custom arrangements.`,
-        widget: null,
-        followUp: 'Shall I connect you with our booking form?',
+        text: `${packages.description}\n\n${packageList}\n\nFor bespoke requirements, our **${packages.bespoke.title}** provides ${packages.bespoke.description.toLowerCase()}`,
+        widget: 'serviceLinkWidget',
+        followUp: "You can view the full details and start your booking on our official services page above."
       };
     }
 
-    if (/about|erika|who|team|studio|vision|style/i.test(q)) {
+    // About/Vision
+    if (/\b(about|erika|who|team|studio|vision|style|philosophy|approach)\b/i.test(q) || q === 'about') {
+      const experience = home.stats.find(s => s.label === "Experience")?.value || "12 Years";
       return {
-        text: home.about.text,
-        widget: null,
-        followUp: 'Erika brings 12 years of refined artistic vision — blending vintage aesthetics with modern cinematic precision.',
+        text: `${home.about.text}\n\nErika brings over ${experience} of refined artistry, blending vintage aesthetics with modern cinematic precision.`,
+        widget: 'quickReplies',
+        props: {
+          replies: [
+            { label: 'View Services', id: 'pricing' },
+            { label: 'See Work', id: 'portfolio' }
+          ]
+        }
+      };
+    }
+
+    // Booking
+    if (/\b(book|session|schedule|reserve|appointment|call|meet|hire)\b/i.test(q)) {
+      return {
+        text: "Beginning a creative journey with Erika requires careful alignment of vision. To view our full service tiers and begin your reservation, please explore our official packages:",
+        widget: 'serviceLinkWidget',
+        followUp: "Our official service list and booking portal is linked above."
       };
     }
 
     return {
-      text: "I appreciate your inquiry. I am best equipped to assist with our portfolio, session packages, and booking arrangements. How may I refine my response?",
-      widget: null,
+      text: "I appreciate your inquiry. To provide the most exquisite guidance, would you like to explore our artistic portfolio, pricing tiers, or our creative philosophy?",
+      widget: 'quickReplies',
+      props: {
+        replies: [
+          { label: 'Portfolio', id: 'portfolio' },
+          { label: 'Pricing', id: 'pricing' },
+          { label: 'Philosophy', id: 'about' }
+        ]
+      }
     };
   };
 }
 
-// ─── Message Bubble Component ─────────────────────────────────────────────────
+// ─── Components ───────────────────────────────────────────────────────────────
+
+function QuickReplyWidget({ replies, onReply }: { replies: any[], onReply: (id: string) => void }) {
+  return (
+    <div className="chatbot-widget-area mt-2 mb-1 flex flex-wrap gap-2">
+      {replies.map((reply) => (
+        <button
+          key={reply.id}
+          onClick={() => onReply(reply.id)}
+          className="chatbot-chip hover:bg-accent/20 transition-all"
+        >
+          {reply.label}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 const BubbleVariants = {
   hidden: { opacity: 0, y: 8, scale: 0.97 },
@@ -83,15 +126,10 @@ const BubbleVariants = {
 function MessageBubble({ msg, index }: { msg: ChatMsg; index: number }) {
   return (
     <motion.div
-      key={msg.id}
       variants={BubbleVariants}
       initial="hidden"
       animate="visible"
-      transition={{
-        delay: index === 0 ? 0 : 0.06,
-        duration: 0.28,
-        ease: [0.16, 1, 0.3, 1],
-      }}
+      transition={{ delay: index === 0 ? 0 : 0.06, duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
       className={msg.type === 'user' ? 'chatbot-user-bubble' : 'chatbot-bot-bubble'}
       style={{ whiteSpace: 'pre-line' }}
     >
@@ -100,191 +138,96 @@ function MessageBubble({ msg, index }: { msg: ChatMsg; index: number }) {
   );
 }
 
-// ─── Widget Renderer ──────────────────────────────────────────────────────────
-
-function WidgetArea({ widget, onClose }: { widget: WidgetType; onClose?: () => void }) {
-  if (!widget) return null;
-  return (
-    <motion.div
-      variants={BubbleVariants}
-      initial="hidden"
-      animate="visible"
-      transition={{ delay: 0.1, duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {widget === 'bookingWidget' && <BookingWidget onClose={onClose} />}
-      {widget === 'portfolioWidget' && <PortfolioWidget onClose={onClose} />}
-    </motion.div>
-  );
-}
-
-// ─── Typing Indicator ─────────────────────────────────────────────────────────
-
-function TypingIndicator() {
-  return (
-    <motion.div
-      variants={BubbleVariants}
-      initial="hidden"
-      animate="visible"
-      exit={{ opacity: 0, scale: 0.95 }}
-      className="chatbot-bot-bubble flex items-center gap-1.5"
-      aria-label="Bot is typing"
-    >
-      {[0, 1, 2].map((i) => (
-        <motion.span
-          key={i}
-          className="w-1.5 h-1.5 rounded-full bg-accent/60"
-          animate={{ opacity: [0.3, 1, 0.3], y: [0, -3, 0] }}
-          transition={{ repeat: Infinity, duration: 0.9, delay: i * 0.18 }}
-        />
-      ))}
-    </motion.div>
-  );
-}
-
-// ─── Main Interface ───────────────────────────────────────────────────────────
-
-interface ChatbotInterfaceProps {
-  content: SiteContent;
-  onClose?: () => void;
-}
-
-export default function ChatbotInterface({ content, onClose }: ChatbotInterfaceProps) {
-  const respond = useCallback(
-    (input: string) => buildResponder(content)(input),
-    [content]
-  );
-
+export default function ChatbotInterface({ content, onClose }: { content: SiteContent; onClose?: () => void }) {
   const [messages, setMessages] = useState<ChatMsg[]>(() => {
-    // Hydrate from sessionStorage on mount (survives hard reloads within the tab)
     if (typeof window !== 'undefined') {
-      try {
-        const saved = sessionStorage.getItem('pp_chat_messages');
-        if (saved) return JSON.parse(saved) as ChatMsg[];
-      } catch {
-        // Corrupted storage — fall through to defaults
+      const saved = localStorage.getItem('studio_concierge_history');
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (e) {
+          console.error("Failed to parse chat history", e);
+        }
       }
     }
     return [
-      {
-        id: 0,
-        type: 'bot',
-        text: 'Welcome. I am the Studio Concierge for Persuasive Productions.',
-        widget: null,
-      },
-      {
-        id: 1,
-        type: 'bot',
-        text: 'I can assist you with our portfolio, packages, or booking a session with Erika. How may I serve you?',
-        widget: null,
-      },
+      { id: 0, type: 'bot', text: 'Welcome. I am the Studio Concierge for Persuasive Productions.', widget: null },
+      { id: 1, type: 'bot', text: 'I can assist you with our portfolio, packages, or Erika\'s creative vision. How may I serve you?', widget: 'quickReplies', props: { replies: [{ label: 'Portfolio', id: 'portfolio' }, { label: 'Pricing', id: 'pricing' }, { label: 'Vision', id: 'about' }] } },
     ];
   });
+
+  useEffect(() => {
+    localStorage.setItem('studio_concierge_history', JSON.stringify(messages));
+  }, [messages]);
 
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
 
-  // Persist messages to sessionStorage whenever they change
-  useEffect(() => {
-    try {
-      sessionStorage.setItem('pp_chat_messages', JSON.stringify(messages));
-    } catch {
-      // sessionStorage unavailable (private browsing quota exceeded) — silent fail
-    }
-  }, [messages]);
-
-  // Auto-scroll to latest message
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
+  const respond = buildResponder(content);
 
-  const sendMessage = useCallback(() => {
-    const text = input.trim();
-    if (!text || isTyping) return;
-
-    const userMsg: ChatMsg = {
-      id: Date.now(),
-      type: 'user',
-      text,
-      widget: null,
-    };
-
-    setMessages((prev) => [...prev, userMsg]);
-    setInput('');
+  const processResponse = useCallback((userInput: string) => {
     setIsTyping(true);
+    const delay = 600 + Math.random() * 300;
 
-    // Simulate human reading/thinking rhythm (600–900ms)
-    const delay = 650 + Math.random() * 250;
     setTimeout(() => {
-      const { text: responseText, widget, followUp } = respond(text);
-
+      const { text, widget, props, followUp } = respond(userInput);
       setIsTyping(false);
-      setMessages((prev) => [
-        ...prev,
-        { id: Date.now(), type: 'bot', text: responseText, widget },
-      ]);
+      
+      const botMsg: ChatMsg = { id: Date.now(), type: 'bot', text, widget, props };
+      setMessages((prev) => [...prev, botMsg]);
 
-      // Staggered follow-up message
       if (followUp) {
         setTimeout(() => {
-          setMessages((prev) => [
-            ...prev,
-            { id: Date.now() + 1, type: 'bot', text: followUp, widget: null },
-          ]);
+          setMessages((prev) => [...prev, { id: Date.now() + 1, type: 'bot', text: followUp, widget: 'quickReplies', props: { replies: [{ label: 'Pricing', id: 'pricing' }, { label: 'Vision', id: 'about' }] } }]);
         }, 500);
       }
     }, delay);
-  }, [input, isTyping, respond]);
+  }, [respond]);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
+  const sendMessage = () => {
+    if (!input.trim() || isTyping) return;
+    const userMsg: ChatMsg = { id: Date.now(), type: 'user', text: input, widget: null };
+    setMessages((prev) => [...prev, userMsg]);
+    const currentInput = input;
+    setInput('');
+    processResponse(currentInput);
   };
 
   return (
     <>
-      {/* Message stream */}
-      <div className="chatbot-messages" role="log" aria-live="polite" aria-label="Chat messages">
+      <div className="chatbot-messages">
         {messages.map((msg, i) => (
           <div key={msg.id}>
             <MessageBubble msg={msg} index={i} />
-            <WidgetArea widget={msg.widget} onClose={onClose} />
+            {msg.widget === 'portfolioWidget' && <PortfolioWidget onClose={onClose} />}
+            {msg.widget === 'serviceLinkWidget' && <ServiceLinkWidget onClose={onClose} />}
+            {msg.widget === 'quickReplies' && <QuickReplyWidget replies={msg.props.replies} onReply={(id) => processResponse(id)} />}
           </div>
         ))}
-        <AnimatePresence>{isTyping && <TypingIndicator />}</AnimatePresence>
+        {isTyping && (
+          <div className="chatbot-bot-bubble flex gap-1 items-center">
+            <Sparkles size={10} className="animate-spin text-accent" />
+            <span className="text-[10px] opacity-50">Studio thinking...</span>
+          </div>
+        )}
         <div ref={bottomRef} />
       </div>
 
-      {/* Input shell — pushed above mobile keyboard via env(safe-area-inset-bottom) */}
       <div className="chatbot-input-shell">
         <input
-          ref={inputRef}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Ask about portfolio, pricing, booking..."
+          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+          placeholder="Ask about portfolio, pricing..."
           className="chatbot-input"
-          aria-label="Chat input"
-          maxLength={200}
-          disabled={isTyping}
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-          spellCheck={false}
         />
-        <button
-          onClick={sendMessage}
-          disabled={!input.trim() || isTyping}
-          className="chatbot-send-btn"
-          aria-label="Send message"
-        >
-          <Send size={14} />
-        </button>
+        <button onClick={sendMessage} className="chatbot-send-btn"><Send size={14} /></button>
       </div>
     </>
   );
