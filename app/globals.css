@@ -40,7 +40,7 @@
   --z-index-lightbox: 1100;
   --z-index-lightbox-close: 1110;
   --z-index-noise: 50;
-  --z-index-chatbot: 900;
+  --z-index-chatbot: 1100;
 
   /* Opacity */
   --opacity-ghost: 0.02;
@@ -638,8 +638,9 @@
 
   .chatbot-shell {
     @apply absolute bottom-24 right-0 flex flex-col overflow-hidden rounded-sm border border-white/5;
-    width: min(22rem, calc(100vw - 2rem));
-    max-height: 85dvh;
+    width: min(24rem, calc(100vw - 2rem));
+    height: 600px;
+    max-height: min(75dvh, 700px);
     background: oklch(0.1 0 0 / 0.85);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
@@ -719,7 +720,7 @@
 
   /* Portfolio chips */
   .chatbot-chip {
-    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border border-accent/20 text-accent text-xxs font-bold uppercase tracking-widest-plus transition-all cursor-pointer;
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-sm border border-accent/20 text-accent text-[10px] font-bold uppercase tracking-widest-plus transition-all cursor-pointer;
     background: oklch(0.85 0.12 85 / 0.06);
     transition-duration: var(--duration-premium);
   }
@@ -727,5 +728,19 @@
   .chatbot-chip:hover {
     @apply border-accent/50 brightness-110;
     background: oklch(0.85 0.12 85 / 0.12);
+  }
+
+  /* Scoped Button Overrides for Chatbot */
+  .chatbot-shell .nav-button {
+    @apply px-4 py-2.5 min-h-0 h-auto gap-2;
+  }
+
+  .chatbot-shell .nav-button p,
+  .chatbot-shell .nav-button span {
+    @apply !text-black;
+  }
+
+  .chatbot-shell .nav-button p {
+    @apply !text-tiny;
   }
 }
