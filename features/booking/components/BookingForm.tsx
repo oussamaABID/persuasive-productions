@@ -8,7 +8,7 @@ import { Turnstile } from '@marsidev/react-turnstile';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import { TURNSTILE_SITE_KEY } from '@/lib/config';
-import { sendBookingEmail } from '../api/actions';
+import { sendBookingEmail } from '@/features/booking/api/actions';
 import { CheckCircle2, ArrowRight, Home, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 import { SiteContent } from '@/lib/types';
@@ -25,20 +25,26 @@ export function BookingForm({ content }: BookingFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
 
-  // Scroll the confirmation into view as soon as it appears.
-  // requestAnimationFrame ensures the DOM has painted before we scroll.
+  // Robust scroll-to-feedback logic for mobile UX.
+  // Ensures user sees success/error messages immediately after submission.
   useEffect(() => {
-    if (isSuccess && successRef.current) {
-      requestAnimationFrame(() => {
-        successRef.current?.scrollIntoView({
+    if ((isSuccess || error) && containerRef.current) {
+      const scrollTarget = isSuccess ? (successRef.current || containerRef.current) : containerRef.current;
+      
+      // Small delay to allow DOM/AnimatePresence transitions to complete
+      const timer = setTimeout(() => {
+        scrollTarget.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
         });
-      });
+      }, 100);
+      
+      return () => clearTimeout(timer);
     }
-  }, [isSuccess]);
+  }, [isSuccess, error]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -82,10 +88,10 @@ export function BookingForm({ content }: BookingFormProps) {
         </motion.div>
 
         <p className="section-tag mb-6">Required Step</p>
-        <h3 className="text-4xl font-serif font-bold italic text-white mb-6">
+        <h3 className="booking-success-title">
           Choose Your Package First
         </h3>
-        <p className="text-muted-foreground text-lg font-light leading-relaxed max-w-lg mx-auto mb-12">
+        <p className="display-subtitle mb-12">
           Each session begins with a vision. Please select a package from our services page before making your booking inquiry.
         </p>
 
@@ -114,7 +120,7 @@ export function BookingForm({ content }: BookingFormProps) {
 
   return (
 
-    <div className="relative min-h-spacing-booking-min">
+    <div ref={containerRef} className="relative min-h-spacing-booking-min">
       <AnimatePresence mode="wait">
         {!isSuccess ? (
           <motion.div 
@@ -131,6 +137,15 @@ export function BookingForm({ content }: BookingFormProps) {
             </div>
             
             <form className="space-y-10 relative z-10" onSubmit={handleSubmit}>
+              {error && (
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  className="error-notice"
+                >
+                  {error}
+                </motion.div>
+              )}
               {selectedPackage && (
                 <div className="booking-notice-box">
                   <div className="flex items-center gap-4">
@@ -195,12 +210,6 @@ export function BookingForm({ content }: BookingFormProps) {
                   placeholder={content.book.form.visionPlaceholder}
                 ></textarea>
               </div>
-
-              {error && (
-                <div className="text-red-400 text-xxs uppercase tracking-widest font-bold">
-                  Error: {error}
-                </div>
-              )}
 
               <div className="flex flex-col gap-10 pt-10">
                 <div className="flex justify-center md:justify-start">
