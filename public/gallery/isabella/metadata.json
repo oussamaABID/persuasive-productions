@@ -1,0 +1,9 @@
+{
+  "title": "Isabella",
+  "description": "Ethereal silhouettes and graceful motion. An exploration of the human form as art.",
+  "showOnHome": true,
+  "coverImage": "cover.png",
+  "images": [
+    { "file": "cover.png", "title": "Isabella I", "alt": "Isabella - High Key B&W Silhouette" }
+  ]
+}

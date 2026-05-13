@@ -1,0 +1,9 @@
+{
+  "title": "Maya",
+  "description": "The intersection of high-fashion and intimacy. Opulent textures, whispered narratives.",
+  "showOnHome": true,
+  "coverImage": "cover.png",
+  "images": [
+    { "file": "cover.png", "title": "Maya I", "alt": "Maya - Editorial B&W Boudoir" }
+  ]
+}

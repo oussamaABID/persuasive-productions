@@ -1,0 +1,9 @@
+{
+  "title": "Lucia",
+  "description": "Dramatic noir lighting and architectural depth. A sophisticated narrative of shadow and soul.",
+  "showOnHome": true,
+  "coverImage": "cover.png",
+  "images": [
+    { "file": "cover.png", "title": "Lucia I", "alt": "Lucia - Moody B&W Noir" }
+  ]
+}

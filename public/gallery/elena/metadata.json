@@ -1,0 +1,11 @@
+{
+  "title": "Elena",
+  "description": "Cinematic shadows meet timeless poise. A series exploring the depth of a single glance.",
+  "showOnHome": true,
+  "coverImage": "cover.png",
+  "images": [
+    { "file": "cover.png", "title": "Elena I", "alt": "Elena - Cinematic B&W Noir" },
+    { "file": "1.png", "title": "Elena II", "alt": "Elena - Window Noir" },
+    { "file": "2.png", "title": "Elena III", "alt": "Elena - Mirror Reflection" }
+  ]
+}

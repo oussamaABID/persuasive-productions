@@ -1,0 +1,11 @@
+{
+  "title": "Sophia",
+  "description": "A study of grace and vulnerability, captured in the soft embrace of morning light.",
+  "showOnHome": true,
+  "coverImage": "cover.png",
+  "images": [
+    { "file": "cover.png", "title": "Sophia I", "alt": "Sophia - Fine Art B&W Boudoir" },
+    { "file": "1.png", "title": "Sophia II", "alt": "Sophia - Intimate Portrait" },
+    { "file": "2.png", "title": "Sophia III", "alt": "Sophia - Graceful Silhouette" }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Clara",
+  "description": "Soft focus and quiet moments. Capturing the timeless beauty found in the details.",
+  "showOnHome": true,
+  "coverImage": "cover.png",
+  "images": [
+    { "file": "cover.png", "title": "Clara I", "alt": "Clara - Timeless B&W Portrait" }
+  ]
+}
