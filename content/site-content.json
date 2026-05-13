@@ -3,25 +3,25 @@
     "brand": {
       "name": "Persuasive Productions",
       "shortName": "Persuasive",
-      "essence": "Persuasive Essence"
+      "essence": "The Silent Narrative"
     },
     "nav": {
       "portfolio": "Portfolio",
-      "packages": "Services",
-      "book": "Book Now",
+      "packages": "Packages",
+      "book": "Book your session",
       "home": "Home"
     },
     "footer": {
-      "description": "Exquisite photography services by Erika. Capturing the essence of Noir elegance through a lens of timeless beauty.",
+      "description": "Specializing in high end boudoir photography. In studio or on location. Your session is a celebration of strength and mystery.",
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
       "rights": "All rights reserved.",
       "navigation": "Navigation",
       "studio": "Studio",
-      "studioInfo": "By appointment only.\nHigh-end clean photography services."
+      "studioInfo": "By appointment only."
     },
     "buttons": {
-      "viewAll": "View all collections",
+      "viewAll": "Explore portfolio",
       "explore": "Explore Series",
       "choose": "Choose",
       "inquire": "Inquire Privately",
@@ -34,64 +34,56 @@
     },
     "chatbot": {
       "title": "Studio Concierge",
-      "description": "Greetings. Our bespoke AI concierge is currently in training to provide you with an exquisite booking experience.",
+      "description": "Greetings. Our bespoke AI concierge is here to provide you with an exquisite experience.",
       "phase": "Phase 01",
       "status": "Awaiting connection..."
     }
   },
   "home": {
     "hero": {
-      "tag": "Exquisite Noir Photography",
-      "titlePart1": "Capturing",
-      "titlePart2": "Essence",
-      "titlePart3": "of Pure Art",
-      "title": "Capturing the Essence of Noir Elegance",
-      "subtitle": "Persuasive Productions specializes in high-end photography that blends vintage Asian aesthetics with modern cinematic lighting.",
-      "cta": "Explore Portfolio",
-      "services": "View Services"
+      "tag": "Boudoir Photography",
+      "titlePart1": "Bold.",
+      "titlePart2": "Intimate.",
+      "titlePart3": "Timeless.",
+      "title": "Bold. Intimate. Timeless.",
+      "subtitle": "Specializing in high end boudoir photography. In studio or on location. Your session is a celebration of strength and mystery.",
+      "cta": "Explore portfolio",
+      "services": "View our packages"
     },
-    "stats": [
-      { "label": "Shoots", "value": "500+", "subtitle": "Capturing Excellence" },
-      { "label": "Edits", "value": "10k+", "subtitle": "Pure Artistry" },
-      { "label": "Experience", "value": "12 Yrs", "subtitle": "Defining Vision" },
-      { "label": "Delivery", "value": "48 Hrs", "subtitle": "Luxurious Speed" }
-    ],
+    "stats": [],
     "about": {
       "subtitle": "The Visionary",
       "title": "The Art of Persuasion",
-      "text": "Based on the vision of Erika, Persuasive Productions offers a unique perspective on professional photography. Our style is inspired by the timeless beauty of Asian jasmine and the strength of the Mulan spirit. We focus on clean, high-impact imagery that tells a story.",
-      "cta": "View Our Packages"
+      "text": "",
+      "cta": "View our packages"
     },
-    "curated": {
-      "subtitle": "Portfolio Highlights",
-      "title": "Curated Collections"
-    },
+
     "quote": {
       "text": "Beauty is not just what you see, but how you feel when you are captured in your most authentic state.",
-      "author": "Erika, Lead Photographer",
+      "author": "Lead Photographer",
       "background": "PERSUASION"
     }
   },
   "portfolio": {
-    "title": "Our Work",
-    "description": "Browse through our collection of professional photography, categorized by artistic theme.",
+    "title": "",
+    "description": "Browse through our collection of professional boudoir photography.",
     "ui": {
       "currentView": "Current View /",
       "collections": "Collections",
-      "scrollExplore": "Scroll to explore each unique vision, curated from our local archives.",
+      "scrollExplore": "Scroll to explore each unique vision.",
       "scrollToDiscover": "Scroll to discover",
       "selection": "Portfolio Selection",
       "signature": "Refining Vision",
       "continue": "Continue to",
-      "untitled": "Untitled Masterpiece",
-      "masterpieceView": "Masterpiece View",
-      "preparing": "Our curated collection is currently being prepared. Please check back soon for the full experience."
+      "untitled": "Untitled",
+      "masterpieceView": "View",
+      "preparing": "Our curated collection is currently being prepared."
     }
   },
   "packages": {
-    "title": "Services & Packages",
-    "description": "Transparent pricing for exceptional photography. Choose the package that fits your needs.",
-    "subtitle": "Exquisite Pricing",
+    "title": "Packages",
+    "description": "To provide an exclusive experience a non-refundable deposit is required to hold your date. This deposit is applied towards your shoot. Pricing is applied in local currency: CAD within Canada and USD within the United States.",
+    "subtitle": "",
     "ui": {
       "mostPreferred": "Most Preferred",
       "perSession": "/ session",
@@ -99,31 +91,46 @@
     },
     "items": [
       {
-        "name": "Essential Noir",
+        "name": "Iris",
         "price": "$450",
         "features": ["2 Hour Studio Session", "15 Retouched Images", "Noir Lighting Setup", "Digital Gallery Delivery"]
       },
       {
-        "name": "Signature Vision",
+        "name": "Rose",
         "price": "$850",
         "features": ["4 Hour Location/Studio", "30 Retouched Images", "Pro Styling Consult", "Premium Fine Art Prints", "Motion Clips (15s)"]
       },
       {
-        "name": "Cinematic Story",
+        "name": "Tulip",
         "price": "$1,450",
         "features": ["Full Day Experience", "All Final Selected Edits", "Storyboarding session", "Printed Hardcover Album", "4K Cinematic BTS"]
+      },
+      {
+        "name": "Jasmine",
+        "price": "$1,850",
+        "features": ["Extended Session", "Luxe Album", "Art Direction"]
+      },
+      {
+        "name": "Lily",
+        "price": "$2,450",
+        "features": ["Destination Shoot", "Full Production Team"]
+      },
+      {
+        "name": "Orchid",
+        "price": "$3,500",
+        "features": ["The Ultimate Experience", "Bespoke Content Strategy"]
       }
     ],
     "bespoke": {
       "tag": "Exclusive Services",
       "title": "Bespoke Creative Vision",
-      "description": "For large-scale productions, brand campaigns, or unique artistic requirements, we offer tailor-made solutions that transcend our standard packages.",
+      "description": "For large-scale productions, brand campaigns, or unique artistic requirements, we offer tailor-made solutions.",
       "features": ["Brand Campaigns", "Art Direction", "Global Shoots"]
     }
   },
   "book": {
-    "title": "Book Your Session",
-    "description": "Ready to capture something extraordinary? Fill out the form below to start your journey with Persuasive Productions.",
+    "title": "Book your session",
+    "description": "Ready to capture something extraordinary? Fill out the form below to start your journey.",
     "subtitle": "Reservation",
     "ui": {
       "loadingForm": "Loading Form..."
@@ -140,7 +147,7 @@
       "visionPlaceholder": "Describe the mood, style, or story you wish to capture...",
       "note": "By submitting this form, you acknowledge that Persuasive Productions focuses on high-end, clean photography services.",
       "successTitle": "Vision Received",
-      "successMessage": "Your inquiry has been successfully captured. Erika will review your vision and reach out within 48 hours to refine the details.",
+      "successMessage": "Your inquiry has been successfully captured. Our team will review your vision and reach out within 48 hours.",
       "returnHome": "Back to Home",
       "viewCollections": "View Collections"
     }
