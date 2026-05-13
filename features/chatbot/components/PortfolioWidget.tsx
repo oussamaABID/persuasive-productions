@@ -4,13 +4,12 @@ import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 
 const PORTFOLIO_CHIPS = [
-  { label: 'Noir Portraits', href: '/portfolio#noir-portraits' },
-  { label: 'Artistic Vision', href: '/portfolio#artistic-vision' },
-  { label: 'Cinematic Essence', href: '/portfolio#cinematic-essence' },
-  { label: 'Luxury Fashion', href: '/portfolio#luxury-fashion' },
-  { label: 'Signature Collection', href: '/portfolio#signature-collection' },
-  { label: 'Studio Elegance', href: '/portfolio#studio-elegance' },
-  { label: 'Timeless Noir', href: '/portfolio#timeless-noir' },
+  { label: 'Sophia', href: '/portfolio#sophia' },
+  { label: 'Elena', href: '/portfolio#elena' },
+  { label: 'Maya', href: '/portfolio#maya' },
+  { label: 'Isabella', href: '/portfolio#isabella' },
+  { label: 'Clara', href: '/portfolio#clara' },
+  { label: 'Lucia', href: '/portfolio#lucia' },
 ];
 
 /**

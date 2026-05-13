@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Send, Sparkles } from 'lucide-react';
 import { SiteContent } from '@/lib/types';
 import ServiceLinkWidget from '@/features/chatbot/components/ServiceLinkWidget';
@@ -17,16 +17,16 @@ interface ChatMsg {
   type: MessageType;
   text: string;
   widget: WidgetType;
-  props?: any;
+  props?: Record<string, unknown>;
 }
 
 // ─── Intent Engine (Enhanced Logic) ──────────────────────────────────────────
 
-function buildResponder(content: SiteContent) {
-  const { packages, portfolio, home } = content;
+function buildResponder(content: SiteContent, collections: any[]) {
+  const { packages, home } = content;
   const packageList = packages.items.map((p) => `• **${p.name}** — ${p.price}`).join('\n');
 
-  return function respond(input: string): { text: string; widget: WidgetType; props?: any; followUp?: string } {
+  return function respond(input: string): { text: string; widget: WidgetType; props?: Record<string, unknown>; followUp?: string } {
     const q = input.toLowerCase().trim();
 
     // Greeting
@@ -44,12 +44,17 @@ function buildResponder(content: SiteContent) {
       };
     }
 
-    // Portfolio
-    if (/\b(portfolio|work|gallery|collection|photos|images|shots|see)\b/i.test(q) || q === 'portfolio') {
+    // Portfolio & Specific Collections
+    const collectionMatch = collections.find(c => q.includes(c.id) || q.includes(c.title.toLowerCase()));
+    if (collectionMatch || /\b(portfolio|work|gallery|collection|photos|images|shots|see)\b/i.test(q) || q === 'portfolio') {
+      const text = collectionMatch 
+        ? `The **${collectionMatch.title}** collection is ${collectionMatch.description.toLowerCase()} You can find it in our signature portfolio.`
+        : `${content.portfolio.description} Every frame is meticulously composed to tell a high-impact story.`;
+      
       return {
-        text: `${portfolio.description} Every frame is meticulously composed to tell a high-impact story.`,
+        text,
         widget: 'portfolioWidget',
-        followUp: "Shall we discuss our investment tiers or Erika's artistic approach next?"
+        followUp: "Shall we discuss our investment tiers or our artistic approach next?"
       };
     }
 
@@ -63,10 +68,9 @@ function buildResponder(content: SiteContent) {
     }
 
     // About/Vision
-    if (/\b(about|erika|who|team|studio|vision|style|philosophy|approach)\b/i.test(q) || q === 'about') {
-      const experience = home.stats.find(s => s.label === "Experience")?.value || "12 Years";
+    if (/\b(who|team|studio|vision|style|philosophy|approach)\b/i.test(q) || q === 'about') {
       return {
-        text: `${home.about.text}\n\nErika brings over ${experience} of refined artistry, blending vintage aesthetics with modern cinematic precision.`,
+        text: `${home.about.text}\n\nOur team brings years of refined artistry, blending vintage aesthetics with modern cinematic precision.`,
         widget: 'quickReplies',
         props: {
           replies: [
@@ -80,7 +84,7 @@ function buildResponder(content: SiteContent) {
     // Booking
     if (/\b(book|session|schedule|reserve|appointment|call|meet|hire)\b/i.test(q)) {
       return {
-        text: "Beginning a creative journey with Erika requires careful alignment of vision. To view our full service tiers and begin your reservation, please explore our official packages:",
+        text: "Beginning a creative journey with us requires careful alignment of vision. To view our full service tiers and begin your reservation, please explore our official packages:",
         widget: 'serviceLinkWidget',
         followUp: "Our official service list and booking portal is linked above."
       };
@@ -102,7 +106,12 @@ function buildResponder(content: SiteContent) {
 
 // ─── Components ───────────────────────────────────────────────────────────────
 
-function QuickReplyWidget({ replies, onReply }: { replies: any[], onReply: (id: string) => void }) {
+interface QuickReply {
+  id: string;
+  label: string;
+}
+
+function QuickReplyWidget({ replies, onReply }: { replies: QuickReply[], onReply: (id: string) => void }) {
   return (
     <div className="chatbot-widget-area mt-2 mb-1 flex flex-wrap gap-2">
       {replies.map((reply) => (
@@ -138,7 +147,7 @@ function MessageBubble({ msg, index }: { msg: ChatMsg; index: number }) {
   );
 }
 
-export default function ChatbotInterface({ content, onClose }: { content: SiteContent; onClose?: () => void }) {
+export default function ChatbotInterface({ content, collections, onClose }: { content: SiteContent; collections: any[]; onClose?: () => void }) {
   const [messages, setMessages] = useState<ChatMsg[]>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('studio_concierge_history');
@@ -152,7 +161,7 @@ export default function ChatbotInterface({ content, onClose }: { content: SiteCo
     }
     return [
       { id: 0, type: 'bot', text: 'Welcome. I am the Studio Concierge for Persuasive Productions.', widget: null },
-      { id: 1, type: 'bot', text: 'I can assist you with our portfolio, packages, or Erika\'s creative vision. How may I serve you?', widget: 'quickReplies', props: { replies: [{ label: 'Portfolio', id: 'portfolio' }, { label: 'Pricing', id: 'pricing' }, { label: 'Vision', id: 'about' }] } },
+      { id: 1, type: 'bot', text: 'I can assist you with our portfolio, packages, or our creative vision. How may I serve you?', widget: 'quickReplies', props: { replies: [{ label: 'Portfolio', id: 'portfolio' }, { label: 'Pricing', id: 'pricing' }, { label: 'Vision', id: 'about' }] } },
     ];
   });
 
@@ -168,7 +177,7 @@ export default function ChatbotInterface({ content, onClose }: { content: SiteCo
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
-  const respond = buildResponder(content);
+  const respond = buildResponder(content, collections);
 
   const processResponse = useCallback((userInput: string) => {
     setIsTyping(true);
@@ -206,7 +215,12 @@ export default function ChatbotInterface({ content, onClose }: { content: SiteCo
             <MessageBubble msg={msg} index={i} />
             {msg.widget === 'portfolioWidget' && <PortfolioWidget onClose={onClose} />}
             {msg.widget === 'serviceLinkWidget' && <ServiceLinkWidget onClose={onClose} />}
-            {msg.widget === 'quickReplies' && <QuickReplyWidget replies={msg.props.replies} onReply={(id) => processResponse(id)} />}
+            {msg.widget === 'quickReplies' && !!msg.props?.replies && (
+              <QuickReplyWidget 
+                replies={msg.props.replies as QuickReply[]} 
+                onReply={(id) => processResponse(id)} 
+              />
+            )}
           </div>
         ))}
         {isTyping && (

@@ -73,9 +73,10 @@ const iconVariants = {
 
 interface ChatbotPlaceholderProps {
   content: SiteContent;
+  collections: any[]; // Using any[] to simplify for now, matching GalleryCollection
 }
 
-export default function ChatbotPlaceholder({ content }: ChatbotPlaceholderProps) {
+export default function ChatbotPlaceholder({ content, collections }: ChatbotPlaceholderProps) {
   const [isOpen, setIsOpen] = useState(false);
   // Track whether the interface has ever been opened to preserve state after close
   const [hasOpened, setHasOpened] = useState(false);
@@ -150,7 +151,7 @@ export default function ChatbotPlaceholder({ content }: ChatbotPlaceholderProps)
             </header>
 
             {/* Interface — lazy-loaded, preserved in DOM once mounted */}
-            {hasOpened && <ChatbotInterface key={chatKey} content={content} onClose={() => setIsOpen(false)} />}
+            {hasOpened && <ChatbotInterface key={chatKey} content={content} collections={collections} onClose={() => setIsOpen(false)} />}
           </motion.div>
         )}
       </AnimatePresence>
