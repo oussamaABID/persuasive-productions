@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { MotionReveal } from '@/components/ui/MotionReveal';
 import { SiteContent } from '@/lib/types';
@@ -16,7 +15,7 @@ export function AboutSection({ content }: AboutSectionProps) {
   return (
     <section className="py-40 relative overflow-hidden bg-background">
       <div className="site-container">
-        <div className="flex flex-col lg:flex-row items-center gap-24">
+        <div className="flex flex-col lg:flex-row-reverse items-stretch gap-24">
           <MotionReveal className="flex-1 relative group w-full" delay={0}>
             <div className="about-image-wrapper">
               <Image 
@@ -31,25 +30,21 @@ export function AboutSection({ content }: AboutSectionProps) {
             </div>
           </MotionReveal>
           
-          <div className="flex-1 text-center lg:text-left">
-            <SectionHeading 
-              alignment="left"
-              subtitle={content.home.about.subtitle}
-              title={content.home.about.title}
-              className="mb-8"
-            />
-            <MotionReveal delay={0.3}>
-              <p className="about-text">
-                {content.home.about.text}
-              </p>
-              
-              <Link 
-                href="/packages" 
-                className="nav-button inline-block"
-              >
-                {content.home.about.cta}
-              </Link>
-            </MotionReveal>
+          <div className="flex-1 text-center lg:text-left flex flex-col justify-center">
+            {/* Constrained block to ~50% of parent/image height */}
+            <div className="lg:max-h-[280px] flex flex-col justify-center">
+              <SectionHeading 
+                alignment="left"
+                subtitle={content.home.about.subtitle}
+                title={content.home.about.title}
+                className="mb-8"
+              />
+              <MotionReveal delay={0.3}>
+                <p className="about-text">
+                  {content.home.about.text}
+                </p>
+              </MotionReveal>
+            </div>
           </div>
         </div>
       </div>

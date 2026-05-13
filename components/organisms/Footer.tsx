@@ -45,7 +45,6 @@ const Footer = ({ content }: FooterProps) => {
             <h4 className="form-label mb-8">{content.common.footer.navigation}</h4>
             <ul className="space-y-4">
               <li><Link href="/" className="text-sm text-muted-foreground hover:text-white transition-colors font-light">{content.common.nav.home}</Link></li>
-              <li><Link href="/portfolio" className="text-sm text-muted-foreground hover:text-white transition-colors font-light">{content.common.nav.portfolio}</Link></li>
               <li><Link href="/packages" className="text-sm text-muted-foreground hover:text-white transition-colors font-light">{content.common.nav.packages}</Link></li>
             </ul>
           </div>

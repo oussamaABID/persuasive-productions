@@ -18,8 +18,8 @@
   /* Typography */
   --text-xxs: 0.6rem;
   --text-tiny: 0.5rem;
-  --text-display: clamp(3.75rem, 10vw, 8rem);
-  --text-stat: clamp(3rem, 8vw, 3.75rem);
+  --text-display: clamp(1.875rem, 5vw, 4rem);
+  --text-stat: clamp(1.5rem, 4vw, 1.875rem);
   
   --tracking-ultra: 0.5em;
   --tracking-widest-plus: 0.1em;
@@ -121,7 +121,7 @@
   }
 
   .booking-success-title {
-    @apply text-4xl md:text-5xl font-serif font-bold italic text-white mb-6;
+    @apply text-2xl md:text-3xl font-serif font-bold italic text-white mb-6;
   }
 
   .booking-success-button {
@@ -144,7 +144,7 @@
   }
 
   .page-title {
-    @apply text-4xl md:text-6xl font-serif font-bold italic mb-12 bg-gold-text bg-clip-text text-transparent;
+    @apply text-2xl md:text-3xl font-serif font-bold italic mb-12 bg-gold-text bg-clip-text text-transparent;
   }
 
   .page-subtitle {
@@ -310,11 +310,11 @@
 
   /* Quote Section Specifics */
   .quote-background-text {
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(5rem,15vw,12rem)] font-serif font-black text-accent/[0.04] whitespace-nowrap pointer-events-none select-none z-0 italic;
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(2.5rem,7.5vw,6rem)] font-serif font-black text-accent/[0.04] whitespace-nowrap pointer-events-none select-none z-0 italic;
   }
 
   .quote-text {
-    @apply text-[clamp(1.75rem,4vw,2.5rem)] font-serif font-normal leading-tight mb-10 italic text-white;
+    @apply text-[clamp(0.875rem,2vw,1.25rem)] font-serif font-normal leading-tight mb-10 italic text-white;
   }
 
   .quote-author {

@@ -13,9 +13,7 @@ interface NavbarMobileProps {
 }
 
 const menuLinks = [
-  { key: 'home',      href: '/',          labelKey: 'home' as const },
-  { key: 'portfolio', href: '/portfolio', labelKey: 'portfolio' as const },
-  { key: 'packages',  href: '/packages',  labelKey: 'packages' as const },
+  { key: 'packages',  href: '/packages',  labelKey: 'book' as const },
 ];
 
 export const NavbarMobile = ({ content }: NavbarMobileProps) => {

@@ -21,7 +21,7 @@ export default function PackagesView() {
           className="mb-24"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {content.packages.items.map((pkg: { name: string; price: string; features: string[] }, idx: number) => {
             const isHighlighted = idx === 1;
             return (
@@ -36,7 +36,7 @@ export default function PackagesView() {
                   isHighlighted && "package-card-highlighted"
                 )}
               >
-                {/* Jasmine watermark — Erika's signature identity */}
+                {/* Jasmine watermark — Signature identity */}
                 <span className="package-jasmine-watermark" aria-hidden="true">❀</span>
 
                 {/* Elegant angled ribbon for featured card */}

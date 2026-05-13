@@ -15,9 +15,6 @@ export function QuoteSection({ content }: QuoteSectionProps) {
         <h2 className="quote-text">
           “{content.home.quote.text}”
         </h2>
-        <div className="quote-author">
-          — {content.home.quote.author}
-        </div>
       </div>
     </section>
   );
