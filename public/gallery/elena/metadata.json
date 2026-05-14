@@ -6,7 +6,6 @@
   "images": [
     { "file": "cover.png", "title": "Elena I", "alt": "Elena - Cinematic B&W Noir" },
     { "file": "1.png", "title": "Elena II", "alt": "Elena - Window Noir" },
-    { "file": "2.png", "title": "Elena III", "alt": "Elena - Mirror Reflection Noir" },
-    { "file": "3.png", "title": "Elena IV", "alt": "Elena - Intense Cinematic Portrait" }
+    { "file": "2.png", "title": "Elena III", "alt": "Elena - Mirror Reflection Noir" }
   ]
 }
