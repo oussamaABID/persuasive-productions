@@ -1,4 +1,3 @@
-import { Camera, Aperture, X, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { SiteContent } from '@/lib/types';
 
@@ -21,22 +20,50 @@ const Footer = ({ content }: FooterProps) => {
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-8 group">
               <div className="footer-logo-wrapper">
-                <Camera size={16} />
+                <svg 
+                  width="16" 
+                  height="16" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  className="lucide-instagram"
+                >
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
               </div>
               <span className="navbar-brand-text">{content.common.brand.name}</span>
             </Link>
-            <p className="text-muted-foreground text-lg font-light leading-relaxed max-w-sm mb-10">
+            <p className="text-muted-foreground text-sm font-light leading-relaxed max-w-sm mb-10">
               {content.common.footer.description}
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="footer-social-link" aria-label="Aperture">
-                <Aperture size={18} />
-              </a>
-              <a href="#" className="footer-social-link" aria-label="Social">
-                <X size={18} />
-              </a>
-              <a href="#" className="footer-social-link" aria-label="Email">
-                <Mail size={18} />
+              <a 
+                href="https://www.instagram.com/persuasiveproductions/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="footer-social-link" 
+                aria-label="Instagram"
+              >
+                <svg 
+                  width="18" 
+                  height="18" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  className="lucide-instagram"
+                >
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -50,21 +77,17 @@ const Footer = ({ content }: FooterProps) => {
           </div>
           
           <div>
-            <h4 className="form-label mb-8">{content.common.footer.studio}</h4>
-            <p className="text-sm text-muted-foreground font-light leading-relaxed mb-4 whitespace-pre-line">
-              {content.common.footer.studioInfo}
-            </p>
-            <span className="text-xxs text-accent/40 uppercase tracking-widest block mt-8">❀ {content.common.brand.essence}</span>
+            <h4 className="form-label mb-8">Legal</h4>
+            <ul className="space-y-4">
+              <li><Link href="/privacy" className="text-sm text-muted-foreground hover:text-white transition-colors font-light">{content.common.footer.privacy}</Link></li>
+              <li><Link href="/terms" className="text-sm text-muted-foreground hover:text-white transition-colors font-light">{content.common.footer.terms}</Link></li>
+            </ul>
           </div>
         </div>
         
-        <div className="footer-bottom-bar">
-          <div className="text-xxs text-muted-foreground/50 uppercase tracking-widest">
+        <div className="footer-bottom-bar flex justify-center">
+          <div className="text-xxs text-muted-foreground/50 uppercase tracking-widest text-center">
             © {currentYear} {content.common.brand.name}. {content.common.footer.rights}
-          </div>
-          <div className="flex gap-8">
-            <Link href="/privacy" className="text-xxs text-muted-foreground/40 hover:text-accent transition-colors uppercase tracking-widest">{content.common.footer.privacy}</Link>
-            <Link href="/terms" className="text-xxs text-muted-foreground/40 hover:text-accent transition-colors uppercase tracking-widest">{content.common.footer.terms}</Link>
           </div>
         </div>
       </div>

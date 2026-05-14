@@ -7,35 +7,35 @@ export default function Privacy() {
   return (
     <main className="page-main">
       <Navbar content={content} />
-      <article className="site-container max-w-4xl">
+      <article className="site-container max-w-4xl flex-grow pb-24">
         <h1 className="page-title">Privacy Policy</h1>
         
-        <div className="space-y-12 text-lg leading-relaxed text-muted-foreground">
+        <div className="space-y-12 text-base leading-relaxed text-muted-foreground/80 font-light">
           <section>
-            <h2 className="page-subtitle">Introduction</h2>
+            <h2 className="page-subtitle">Discretion & Integrity</h2>
             <p>
-              At Persuasive Productions, your privacy is a cornerstone of our elite service. We are committed to protecting the personal data of our clients with the same level of care and precision as we apply to our photography.
+              At Persuasive Productions, discretion is the cornerstone of our elite service. We recognize the intimate nature of boudoir photography and are committed to safeguarding your personal data and visual assets with the highest standards of security and professional integrity.
             </p>
           </section>
 
           <section>
-            <h2 className="page-subtitle">Data Collection</h2>
+            <h2 className="page-subtitle">Information Stewardship</h2>
             <p>
-              We collect minimal information necessary for booking and service delivery: your name, email address, and creative vision. This information is used exclusively to facilitate your session and is never shared with third parties for marketing purposes.
+              We collect only the essential data required to facilitate your bespoke experience: your name, contact information, and specific creative requirements. This data is used exclusively for project coordination and is never disclosed, sold, or shared with third parties for promotional purposes.
             </p>
           </section>
 
           <section>
-            <h2 className="page-subtitle">Image Rights</h2>
+            <h2 className="page-subtitle">Visual Rights & Consent</h2>
             <p>
-              As a client, your likeness is your own. We only display images in our portfolio with explicit written consent. Our archives are stored securely and with redundant backups to ensure the longevity of your artistic legacy.
+              Your likeness is your absolute property. Persuasive Productions strictly adheres to a consent-based publication policy. No images from your session will be used for promotional, social, or portfolio purposes without your explicit, written authorization. All visual assets are stored on encrypted, offline archives to ensure maximum privacy.
             </p>
           </section>
 
           <section>
-            <h2 className="page-subtitle">Cookies</h2>
+            <h2 className="page-subtitle">Digital Environment</h2>
             <p>
-              Our website uses essential cookies to enhance your navigation experience and maintain session integrity. We do not use invasive tracking or third-party advertising cookies.
+              Our platform utilizes industry-standard security protocols to protect your interactions. We employ minimal, essential cookies designed solely to optimize your browsing experience and ensure the functional integrity of our booking systems.
             </p>
           </section>
         </div>

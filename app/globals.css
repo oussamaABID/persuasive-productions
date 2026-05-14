@@ -140,7 +140,7 @@
 
   /* Policy & Content Pages */
   .page-main {
-    @apply relative min-h-screen pt-40 pb-20 bg-background text-foreground font-light;
+    @apply relative min-h-screen flex flex-col pt-40 bg-background text-foreground font-light;
   }
 
   .page-title {
