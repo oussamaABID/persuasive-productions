@@ -2,8 +2,7 @@ import Navbar from '@/components/organisms/Navbar';
 import Footer from '@/components/organisms/Footer';
 
 import { HeroSection } from './HeroSection';
-import { AboutSection } from './AboutSection';
-import { QuoteSection } from './QuoteSection';
+import { VisionSection } from './VisionSection';
 
 import { SiteContent } from '@/lib/types';
 
@@ -22,9 +21,7 @@ export default function HomeView({ content }: HomeViewProps) {
       
       <HeroSection content={content} />
 
-      <AboutSection content={content} />
-
-      <QuoteSection content={content} />
+      <VisionSection content={content} />
 
       <Footer content={content} />
 
