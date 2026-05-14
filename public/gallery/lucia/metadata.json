@@ -4,6 +4,8 @@
   "showOnHome": true,
   "coverImage": "cover.png",
   "images": [
-    { "file": "cover.png", "title": "Lucia I", "alt": "Lucia - Moody B&W Noir" }
+    { "file": "cover.png", "title": "Lucia I", "alt": "Lucia - Moody B&W Noir" },
+    { "file": "1.png", "title": "Lucia II", "alt": "Lucia - Architectural Shadows Staircase" },
+    { "file": "2.png", "title": "Lucia III", "alt": "Lucia - Industrial Window Portrait" }
   ]
 }

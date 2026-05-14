@@ -4,6 +4,8 @@
   "showOnHome": true,
   "coverImage": "cover.png",
   "images": [
-    { "file": "cover.png", "title": "Maya I", "alt": "Maya - Editorial B&W Boudoir" }
+    { "file": "cover.png", "title": "Maya I", "alt": "Maya - Editorial B&W Boudoir" },
+    { "file": "1.png", "title": "Maya II", "alt": "Maya - High Fashion Lace Pose" },
+    { "file": "2.png", "title": "Maya III", "alt": "Maya - Intense Editorial Portrait" }
   ]
 }
