@@ -6,6 +6,7 @@
   "images": [
     { "file": "cover.png", "title": "Clara I", "alt": "Clara - Timeless B&W Portrait" },
     { "file": "1.png", "title": "Clara II", "alt": "Clara - Intimate Morning Light" },
-    { "file": "2.png", "title": "Clara III", "alt": "Clara - Serene Bedside Portrait" }
+    { "file": "2.png", "title": "Clara III", "alt": "Clara - Serene Bedside Portrait" },
+    { "file": "3.png", "title": "Clara IV", "alt": "Clara - Morning Light Serenity" }
   ]
 }
