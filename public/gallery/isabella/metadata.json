@@ -6,6 +6,7 @@
   "images": [
     { "file": "cover.png", "title": "Isabella I", "alt": "Isabella - High Key B&W Silhouette" },
     { "file": "1.png", "title": "Isabella II", "alt": "Isabella - Graceful Leap Silhouette" },
-    { "file": "2.png", "title": "Isabella III", "alt": "Isabella - Serene Ethereal Portrait" }
+    { "file": "2.png", "title": "Isabella III", "alt": "Isabella - Serene Ethereal Portrait" },
+    { "file": "3.png", "title": "Isabella IV", "alt": "Isabella - Elegant Chaise Silhouette" }
   ]
 }
