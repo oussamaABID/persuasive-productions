@@ -1,4 +1,4 @@
-# Persuasive Productions — Titanium Noir
+# Persuasive Productions
 
 Persuasive Productions is a premium, high-fidelity photography platform. Built with a **Titanium Noir** aesthetic, it harmonizes cinematic noir textures with Asian-inspired motifs and high-contrast gold accents to deliver a museum-grade digital experience.
 
